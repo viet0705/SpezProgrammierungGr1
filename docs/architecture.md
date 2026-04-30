@@ -20,36 +20,42 @@ und besteht aus zwei unabhängigen Microservices, die über HTTP miteinander kom
 ```
 SpezProgrammierungGr1/
 ├── services/
-│   ├── data-service/         ← Viet
+│   ├── data-service/              ← Viet
 │   │   ├── app/
 │   │   │   ├── __init__.py
-│   │   │   ├── main.py       ← FastAPI App-Einstiegspunkt
-│   │   │   └── routes.py     ← API-Endpunkte (GET /stats usw.)
+│   │   │   ├── main.py            ← FastAPI App-Einstiegspunkt
+│   │   │   ├── routes.py          ← API-Endpunkte (GET /health, GET /stats)
+│   │   │   ├── reader.py          ← CSVReader: CSV-Dateien einlesen
+│   │   │   ├── cleaner.py         ← DataCleaner: Datenbereinigung
+│   │   │   └── calculator.py      ← StatsCalculator: Mean, Peak, Trendrichtung
 │   │   ├── tests/
 │   │   ├── Dockerfile
 │   │   └── requirements.txt
-│   └── ai-service/           ← Dongwoo
+│   └── ai-service/                ← Dongwoo
 │       ├── app/
 │       │   ├── __init__.py
-│       │   ├── main.py       ← FastAPI App-Einstiegspunkt
-│       │   ├── analysis.py   ← LLM-Aufruf und Interpretation
-│       │   └── charts.py     ← Diagrammerstellung (matplotlib)
+│       │   ├── main.py            ← FastAPI App-Einstiegspunkt
+│       │   ├── routes.py          ← API-Endpunkte (GET /health, GET /analysis, GET /charts/*)
+│       │   ├── fetcher.py         ← DataFetcher: Kennzahlen per HTTP vom Data Service abrufen
+│       │   ├── interpreter.py     ← Interpreter: Kennzahlen per LLM interpretieren
+│       │   ├── output.py          ← OutputGenerator: JSON-Antwort zusammenstellen
+│       │   └── visualizer.py      ← Visualizer: Diagramme erstellen (matplotlib)
 │       ├── tests/
 │       ├── Dockerfile
 │       └── requirements.txt
 ├── k8s/
 │   ├── data-service/
-│   │   ├── deployment.yaml   ← Kubernetes Deployment-Konfiguration
-│   │   └── service.yaml      ← Kubernetes Service-Konfiguration
+│   │   ├── deployment.yaml        ← Kubernetes Deployment-Konfiguration
+│   │   └── service.yaml           ← Kubernetes Service-Konfiguration
 │   └── ai-service/
 │       ├── deployment.yaml
 │       └── service.yaml
 ├── data/
-│   └── csv/                  ← Google Trends CSV-Dateien (von Viet exportiert)
-├── docs/                     ← Projektdokumentation (nicht Teil der Abgabe)
-├── docker-compose.yml        ← Lokaler Start beider Services
-├── .env.example              ← Benötigte Umgebungsvariablen (Vorlage)
-└── README.md                 ← Abgabedokument (7 Fragen)
+│   └── csv/                       ← Google Trends CSV-Dateien (von Viet exportiert)
+├── docs/                          ← Projektdokumentation (nicht Teil der Abgabe)
+├── docker-compose.yml             ← Lokaler Start beider Services
+├── .env.example                   ← Benötigte Umgebungsvariablen (Vorlage)
+└── README.md                      ← Abgabedokument (7 Fragen)
 ```
 
 ---
@@ -57,16 +63,17 @@ SpezProgrammierungGr1/
 ## Services
 
 ### Data Service (Port 8000)
-- Liest CSV-Dateien aus `data/csv/`
-- Berechnet Kennzahlen: **Mean**, **Peak**, **Trendrichtung**
-- Stellt Ergebnisse als JSON über eine REST API bereit
+- Liest CSV-Dateien aus `data/csv/` (`CSVReader`)
+- Bereinigt die Rohdaten (`DataCleaner`)
+- Berechnet Kennzahlen: **Mean**, **Peak**, **Trendrichtung** (`StatsCalculator`)
+- Stellt Ergebnisse als JSON über `GET /stats` bereit
 - Technologie: Python, FastAPI, pandas
 
 ### AI Service (Port 8001)
-- Ruft Daten vom Data Service per HTTP ab
-- Sendet Kennzahlen an ein LLM (OpenAI/DeepSeek API)
-- Generiert automatische Interpretation der Trends
-- Erstellt mindestens 2 Visualisierungen (Line Chart, Ranking)
+- Ruft Kennzahlen vom Data Service per HTTP ab (`DataFetcher`)
+- Interpretiert die Kennzahlen mit einem LLM (`Interpreter`)
+- Stellt die Interpretation als JSON über `GET /analysis` bereit (`OutputGenerator`)
+- Erstellt mindestens 2 Visualisierungen als PNG (`Visualizer`): Ranking-Diagramm + Zeitverlauf
 - Technologie: Python, FastAPI, OpenAI SDK, matplotlib
 
 ---

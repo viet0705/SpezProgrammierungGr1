@@ -9,7 +9,7 @@ router = APIRouter()
 
 DATA_SERVICE_URL = os.getenv("DATA_SERVICE_URL", "http://localhost:8000")
 
-# Beispieldaten fuer lokale Entwicklung (solange Data Service nicht verfuegbar)
+# Beispieldaten für lokale Entwicklung (solange Data Service nicht verfügbar)
 MOCK_STATS = [
     {"name": "Proteinpulver", "mean": 62.3, "peak": 100, "trend": "steigend"},
     {"name": "Kreatin",       "mean": 45.2, "peak": 87,  "trend": "steigend"},

@@ -91,6 +91,18 @@ http://localhost:8000/docs
 http://localhost:8001/docs
 ```
 
+### Entwicklung ohne Docker
+
+Zum Testen einzelner Klassen ohne laufende Services:
+
+```bash
+cd services/ai-service
+source .venv/Scripts/activate
+python test_run.py
+```
+
+> `test_run.py` ist ein temporaeres Skript fuer die lokale Entwicklung und nicht fuer den Produktionsbetrieb vorgesehen.
+
 ## Umgebungsvariablen
 
 Datei `.env` im Root-Verzeichnis erstellen (Vorlage: `.env.example`):

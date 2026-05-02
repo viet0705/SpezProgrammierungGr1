@@ -17,9 +17,17 @@ class DataFetcher:
         self.base_url = os.getenv("DATA_SERVICE_URL", "http://localhost:8000")
 
     def get_stats(self) -> list[dict]:
-        # Bei Fehler (Service nicht erreichbar) werden Mock-Daten zurueckgegeben
+        # Bei Fehler (Service nicht erreichbar) werden Mock-Daten zurückgegeben
         try:
             response = httpx.get(f"{self.base_url}/stats", timeout=5)
             return response.json()["keywords"]
         except Exception:
             return MOCK_STATS
+
+    def get_timeseries(self) -> list[dict]:
+        # Zeitreihendaten vom Data Service abrufen (benoetigt GET /timeseries)
+        try:
+            response = httpx.get(f"{self.base_url}/timeseries", timeout=5)
+            return response.json()["timeseries"]
+        except Exception:
+            return []

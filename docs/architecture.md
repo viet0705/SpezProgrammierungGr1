@@ -71,9 +71,13 @@ SpezProgrammierungGr1/
 
 ### AI Service (Port 8001)
 - Ruft Kennzahlen vom Data Service per HTTP ab (`DataFetcher`)
+- Ruft Zeitreihendaten vom Data Service per HTTP ab (`DataFetcher.get_timeseries()`)
 - Interpretiert die Kennzahlen mit einem LLM (`Interpreter`)
 - Stellt die Interpretation als JSON über `GET /analysis` bereit (`OutputGenerator`)
-- Erstellt mindestens 2 Visualisierungen als PNG (`Visualizer`): Ranking-Diagramm + Zeitverlauf
+- Erstellt 3 Visualisierungen als PNG (`Visualizer`):
+  - `GET /charts/ranking` — Balkendiagramm: Ranking nach Interesse
+  - `GET /charts/peak` — Liniendiagramm: Peak vs. Durchschnitt
+  - `GET /charts/timeseries` — Zeitverlauf (benoetigt `GET /timeseries` vom Data Service)
 - Technologie: Python, FastAPI, OpenAI SDK, matplotlib
 
 ---

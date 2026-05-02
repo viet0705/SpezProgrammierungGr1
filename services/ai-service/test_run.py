@@ -12,6 +12,8 @@ if env_path.exists():
 
 from app.fetcher import DataFetcher
 from app.interpreter import Interpreter
+from app.output import OutputGenerator
+from app.visualizer import Visualizer
 
 print("=== DataFetcher ===")
 stats = DataFetcher().get_stats()
@@ -19,5 +21,16 @@ for s in stats:
     print(s)
 
 print("\n=== Interpreter ===")
-result = Interpreter().interpret(stats)
-print(result)
+interpretation = Interpreter().interpret(stats)
+print(interpretation)
+
+print("\n=== OutputGenerator ===")
+result = OutputGenerator().build(stats, interpretation)
+print("Keys:", list(result.keys()))
+
+print("\n=== Visualizer ===")
+visualizer = Visualizer()
+png = visualizer.ranking_chart(stats)
+print(f"ranking_chart: {len(png)} bytes")
+png = visualizer.peak_chart(stats)
+print(f"peak_chart:    {len(png)} bytes")

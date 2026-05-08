@@ -1,1 +1,23 @@
-# Lokaler Start beider Services (data-service Port 8000, ai-service Port 8001)
+services:
+  data-service:
+    image: spezprogrammierunggr1-data-service:latest
+    build:
+      context: .
+      dockerfile: services/data-service/Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - DATA_DIR=/app/data/csv
+
+  ai-service:
+    image: spezprogrammierunggr1-ai-service:latest
+    build:
+      context: ./services/ai-service
+    ports:
+      - "8001:8000"
+    environment:
+      - DATA_SERVICE_URL=http://data-service:8000
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+      - OPENAI_BASE_URL=${OPENAI_BASE_URL:-https://api.openai.com/v1}
+    depends_on:
+      - data-service

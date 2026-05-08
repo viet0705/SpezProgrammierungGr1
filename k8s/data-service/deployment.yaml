@@ -1,1 +1,37 @@
-# Kubernetes Deployment fuer den Data Service
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: data-service
+  labels:
+    app: data-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: data-service
+  template:
+    metadata:
+      labels:
+        app: data-service
+    spec:
+      containers:
+        - name: data-service
+          image: spezprogrammierunggr1-data-service:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8000
+          env:
+            - name: DATA_DIR
+              value: /app/data/csv
+          livenessProbe:
+            httpGet:
+              path: /live
+              port: 8000
+            initialDelaySeconds: 10
+            periodSeconds: 20
+          readinessProbe:
+            httpGet:
+              path: /ready
+              port: 8000
+            initialDelaySeconds: 5
+            periodSeconds: 10

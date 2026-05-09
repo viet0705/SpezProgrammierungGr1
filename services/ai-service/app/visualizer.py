@@ -22,16 +22,17 @@ class Visualizer:
         return self._to_png(fig)
 
     def peak_chart(self, stats: list[dict]) -> bytes:
-        # Liniendiagramm – Peak vs. Durchschnitt je Keyword
+        # Gruppiertes Balkendiagramm – Peak vs. Durchschnitt je Keyword
         names = [k["name"] for k in stats]
         peaks = [k["peak"] for k in stats]
         means = [k["mean"] for k in stats]
 
         x = range(len(names))
+        width = 0.35
         fig, ax = plt.subplots(figsize=(8, 5))
-        ax.plot(x, peaks, marker="o", label="Peak", color="tomato")
-        ax.plot(x, means, marker="s", label="Durchschnitt", color="steelblue")
-        ax.set_xticks(x)
+        ax.bar([i - width / 2 for i in x], peaks, width, label="Peak", color="tomato")
+        ax.bar([i + width / 2 for i in x], means, width, label="Durchschnitt", color="steelblue")
+        ax.set_xticks(list(x))
         ax.set_xticklabels(names, rotation=15)
         ax.set_ylabel("Interesse (0–100)")
         ax.set_title("Supplements – Peak vs. Durchschnitt")
@@ -52,7 +53,7 @@ class Visualizer:
         fig, ax = plt.subplots(figsize=(10, 5))
         for keyword in keywords:
             values = [d[keyword] for d in timeseries]
-            ax.plot(dates, values, marker="o", label=keyword)
+            ax.plot(dates, values, label=keyword)
 
         ax.set_xlabel("Datum")
         ax.set_ylabel("Interesse (0–100)")

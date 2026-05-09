@@ -12,7 +12,7 @@ class Interpreter:
 
     def interpret(self, stats: list[dict]) -> str:
         lines = [
-            f"- {k['name']}: Mean={k['mean']}, Peak={k['peak']}, Trend={k['trend']}"
+            f"- {k['name']}: Mean={k['mean']}, Peak={k['peak']} (am {k['peak_date']}), Trend={k['trend']}"
             for k in stats
         ]
         prompt = (

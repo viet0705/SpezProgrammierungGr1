@@ -44,11 +44,6 @@ def get_stats():
     }
 
 
-@router.get("/metrics")
-def get_metrics():
-    return get_stats()
-
-
 @router.get("/timeseries")
 def get_timeseries():
     timeseries = _load_timeseries()

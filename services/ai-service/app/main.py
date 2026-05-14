@@ -2,7 +2,7 @@ import os
 from pathlib import Path
 from fastapi import FastAPI
 
-# .env aus dem Root-Verzeichnis laden (nur fuer lokale Entwicklung ohne Docker)
+# .env aus dem Root-Verzeichnis laden (nur für lokale Entwicklung ohne Docker)
 env_path = Path(__file__).parent.parent.parent.parent / ".env"
 if env_path.exists():
     for line in env_path.read_text().splitlines():

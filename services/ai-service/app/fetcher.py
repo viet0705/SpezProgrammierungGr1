@@ -13,7 +13,7 @@ class DataFetcher:
         return response.json()["keywords"]
 
     def get_timeseries(self) -> list[dict]:
-        # Zeitreihendaten vom Data Service abrufen (benoetigt GET /timeseries)
+        # Zeitreihendaten vom Data Service abrufen (benötigt GET /timeseries)
         response = httpx.get(f"{self.base_url}/timeseries", timeout=5)
         response.raise_for_status()
         return response.json()["timeseries"]

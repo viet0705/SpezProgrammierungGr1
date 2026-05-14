@@ -39,6 +39,6 @@ def get_peak_chart():
 
 @router.get("/charts/timeseries", response_class=Response)
 def get_timeseries_chart():
-    # Zeitverlauf-Diagramm – benoetigt laufenden Data Service mit GET /timeseries
+    # Zeitverlauf-Diagramm – benötigt laufenden Data Service mit GET /timeseries
     timeseries = fetcher.get_timeseries()
     return Response(content=visualizer.timeseries_chart(timeseries), media_type="image/png")

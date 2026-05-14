@@ -42,7 +42,7 @@ class Visualizer:
         return self._to_png(fig)
 
     def timeseries_chart(self, timeseries: list[dict]) -> bytes:
-        # Zeitverlauf – Interesse je Keyword ueber Zeit (erwartet Daten von GET /timeseries)
+        # Zeitverlauf – Interesse je Keyword über Zeit (erwartet Daten von GET /timeseries)
         # Format: [{"date": "2024-04-01", "Proteinpulver": 45, "Kreatin": 23, ...}, ...]
         if not timeseries:
             raise ValueError("Keine Zeitreihendaten vorhanden")
@@ -58,14 +58,14 @@ class Visualizer:
         ax.set_xlabel("Datum")
         ax.set_ylabel("Interesse (0–100)")
         ax.set_title("Supplements – Zeitverlauf")
-        ax.legend()
+        ax.legend(loc="upper center", bbox_to_anchor=(0.5, -0.2), ncol=5)
         plt.xticks(rotation=45)
         plt.tight_layout()
 
         return self._to_png(fig)
 
     def _to_png(self, fig) -> bytes:
-        # Diagramm als PNG-Bytes speichern und Figure schliessen
+        # Diagramm als PNG-Bytes speichern und Figure schließen
         buf = io.BytesIO()
         fig.savefig(buf, format="png")
         plt.close(fig)

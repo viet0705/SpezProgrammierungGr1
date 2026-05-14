@@ -205,6 +205,102 @@ Das Projekt muss als **GitHub Repository** abgegeben werden.
 
 ---
 
+## Ziel
+
+Am Ende soll eine lauffähige Anwendung entstehen, die:
+
+- Daten verarbeitet  
+- Trends visualisiert  
+- automatisch interpretiert  
+- als containerisierte Anwendung in Kubernetes läuft  
+
+---
+
+# Teil 1: Abgabe-Template - Inhaltliche Abgabe
+
+Bitte beantworten Sie die folgenden Abschnitte in vollständigen Sätzen.  
+Jede Antwort soll ca. 7–10 Zeilen umfassen.  
+Antworten mit weniger als 7 Zeilen gelten als unzureichend und führen zu Punktabzug.  
+Stichpunkte sind nicht zulässig.  
+Die README.md soll am Ende maximal 220 Zeilen umfassen.
+
+1. Executive Summary – Geben Sie eine kurze Zusammenfassung Ihres Projekts.  
+Welche Kategorie wurde analysiert und welche zentralen Erkenntnisse wurden gewonnen?  
+2. Ziele des Projekts – Welches Ziel verfolgt Ihr Projekt?  
+Welches Problem oder welche Fragestellung im Kontext von Google Trends wird untersucht?  
+3. Anwendung und Nutzung – Wie wird die Anwendung gestartet (How to start, Step by step)?  
+Wie wird Ihre Anwendung genutzt?  
+Wer sind die potenziellen Nutzer:innen?  
+4. Datenanalyse und Ergebnisse – Welche Muster oder Trends konnten Sie erkennen?  
+Gab es auffällige Peaks, Unterschiede oder Entwicklungen?  
+Welche Begriffe haben sich besonders hervorgehoben?  
+5. Visualisierung – Welche Visualisierungen wurden erstellt und warum?  
+Wie helfen diese, die Daten besser zu verstehen?  
+6. Herausforderungen und Learnings – Welche technischen oder fachlichen Probleme sind aufgetreten?  
+Wie wurden diese gelöst?  
+Was haben Sie aus dem Projekt gelernt?  
+7. Zukunftsvision – Wie könnte Ihr System weiterentwickelt werden?  
+Welche zusätzlichen Daten, Features oder AI-Methoden könnten integriert werden?  
+
+---
+
+# Teil 2: Technische Umsetzung
+
+## 1. AI-Komponente
+
+- Es muss mindestens **eine AI-Funktion** implementiert werden (z. B. Analyse, Zusammenfassung oder Empfehlung).
+- Nutzung einer API (z. B. Deepseek, OpenAI) ist erlaubt. (API-Keys werden vom Dozenten bereitgestellt)
+- Die AI muss auf den berechneten Daten basieren (z. B. Mean, Peak, Trend).
+- Die AI darf nicht ausschließlich auf Rohtexten ohne Datenanalyse basieren.
+
+---
+
+## 2. Docker
+
+- Die Anwendung muss containerisiert werden (Dockerfile).
+- Alle Services müssen enthalten sein.
+- Die Anwendung muss lokal startbar sein mit:
+
+```bash
+docker compose up -d
+```
+
+## 3. Kubernetes (lokal, z. B. kind oder Docker Desktop)
+
+- Mindestens **2 Services** (Data Service und AI Service)  
+- Mindestens **1 Deployment pro Service**  
+- Services müssen über **HTTP kommunizieren**  
+
+---
+
+## 4. Pitch (Audio bevorzugt, alternativ Video)
+
+- Dauer: **1–3 Minuten**
+
+**Inhalt:**
+- Problemstellung  
+- wichtigste Erkenntnisse  
+
+---
+
+## Abgabeformat
+
+### Code (GitHub Repository) mit:
+- Quellcode aller Services  
+- Dockerfile(s)  
+- Kubernetes-Manifeste (Ordner `k8s/`)  
+- verwendete CSV-Dateien  
+
+### README.md
+- Antworten auf die Fragen aus Teil 1  
+- maximal **220 Zeilen**  
+
+### Pitch
+- Audio bevorzugt, alternativ Video  
+- Dauer: **1–3 Minuten**  
+
+---
+
 ## Bewertung (100 Punkte)
 
 - Konzept und README – 40 Punkte  
@@ -218,12 +314,43 @@ Das Projekt muss als **GitHub Repository** abgegeben werden.
 ## Notenskala
 
 - **1.0 (sehr gut):** 95 – 100 Punkte  
+- **1.3:** 90 – 94 Punkte  
 - **1.7:** 85 – 89 Punkte  
 - **2.0 (gut):** 80 – 84 Punkte  
 - **2.3:** 75 – 79 Punkte  
+- **2.7:** 70 – 74 Punkte  
 - **3.0 (befriedigend):** 65 – 69 Punkte  
+- **3.3:** 60 – 64 Punkte  
+- **3.7:** 55 – 59 Punkte  
 - **4.0 (ausreichend):** 50 – 54 Punkte  
 - **5.0 (nicht bestanden):** < 50 Punkte  
+
+---
+
+## Hinweise
+
+- Nachweise bitte **textbasiert im README**, keine Screenshots  
+- Google Trends Daten sind **relativ (0–100)** und müssen korrekt interpretiert werden  
+- Pitch: Audio bevorzugt, Video optional  
+
+---
+
+## To-do-Liste
+
+1. Thema wählen (eine Kategorie auswählen)  
+2. Google Trends Daten exportieren (CSV)  
+3. Data Service implementieren  
+4. AI Service implementieren  
+5. Anwendung in Docker containerisieren  
+6. Anwendung lokal starten (`docker compose up -d`)  
+7. Kubernetes Deployment erstellen (`k8s/` Ordner)  
+8. Services in Kubernetes deployen  
+9. Pitch aufnehmen (1–3 Minuten)  
+10. Finale Kontrolle:
+   - README vollständig (max. 220 Zeilen)  
+   - Code vollständig  
+   - Docker + Kubernetes funktional  
+   - GitHub Repository vollständig  
 
 ---
 

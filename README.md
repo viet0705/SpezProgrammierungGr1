@@ -13,7 +13,7 @@ In diesem Projekt haben wir das Google Trends Suchinteresse für fünf Supplemen
 Analysiert wurden Vitamin D, Omega 3, Kreatin, Proteinpulver und Whey Protein im Zeitraum vom 09.04. bis 08.05.2026. 
 Da alle fünf Begriffe gleichzeitig exportiert wurden, normalisiert Google Trends die Werte relativ zum höchsten Datenpunkt im gesamten Vergleich. 
 Vitamin D erreichte dabei am 15. April den höchsten Wert von 100 und bildet damit den Referenzpunkt für alle anderen Begriffe. 
-Mit einem Mittelwert von 78,6 dominiert Vitamin D das Suchinteresse deutlich, zeigt aber wie Omega 3 einen fallenden Trend nach dem Peak. 
+Mit einem Mittelwert von 78,6 dominiert Vitamin D das Suchinteresse deutlich, zeigt jedoch einen insgesamt fallenden Trend mit einem zweiten Ausreißer Anfang Mai. 
 Kreatin und Proteinpulver verhalten sich über den Zeitraum stabil, während Whey Protein mit einem Mittelwert von 24,5 das geringste Interesse aller fünf Begriffe aufweist. 
 Insgesamt lässt sich sagen, dass klassische Gesundheitssupplemente wie Vitamin D und Omega 3 zwar nach wie vor stark nachgefragt werden, das Interesse im Verlauf des Aprils jedoch spürbar nachgelassen hat.
 
@@ -45,7 +45,7 @@ Da die Ergebnisse als JSON und PNG ausgegeben werden, lassen sie sich außerdem 
 
 Im Analysezeitraum vom 09.04. bis 08.05.2026 zeigen die fünf Supplement-Begriffe deutlich unterschiedliche Suchmuster.
 Vitamin D sticht dabei klar heraus: Mit einem Mittelwert von 78,6 und einem Peak von 100 am 15. April liegt es weit vor allen anderen Begriffen.
-Auffällig ist außerdem, dass Vitamin D am 21. April nochmals auf etwa 93 anstieg, bevor es in der zweiten Monatshälfte spürbar abfiel.
+Auffällig ist außerdem, dass Vitamin D nach einem Einbruch auf 61 am 25. April am 5. Mai erneut auf 97 anstieg, bevor es bis zum Ende des Zeitraums wieder auf 63 abfiel.
 Omega 3 folgt mit einem Mittelwert von 66,6 und einem Peak von 81 am 14. April, wobei die zeitliche Nähe beider Peaks auf einen gemeinsamen externen Auslöser hindeuten könnte.
 Kreatin bleibt mit einem Mittelwert von 47,8 über den gesamten Zeitraum stabil, ebenso wie Proteinpulver mit 31,6, was auf ein gleichbleibendes Interesse in der Fitness-Community hindeutet.
 Whey Protein zeigt mit einem Mittelwert von 24,5 nicht nur das geringste Suchinteresse, sondern auch den stärksten Rückgang gegen Ende des Zeitraums.
